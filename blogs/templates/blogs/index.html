@@ -1,0 +1,14 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+
+    <h2>Posts:</h2>
+    <a href="{% url 'blogs:new_post' %}">Add a new post</a>
+
+    {% for post in posts %}
+    <p>{{ post.title }} ({{ post.date_added }})</p>
+    <p>{{ post.text }}</p>
+
+    {% endfor %}
+
+{% endblock content %}
