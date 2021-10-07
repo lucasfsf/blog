@@ -6,7 +6,7 @@
     <a href="{% url 'blogs:new_post' %}">Add a new post</a>
 
     {% for post in posts %}
-    <p>{{ post.title }} ({{ post.date_added }})</p>
+    <p>{{post.owner}}: {{ post.title }} ({{ post.date_added }})</p>
     <p>{{ post.text }}</p>
     <p>
         <a href="{% url 'blogs:edit_post' post.id %}">Edit post</a>
