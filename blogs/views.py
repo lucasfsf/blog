@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 from .models import BlogPost
 from .forms import BlogPostForm
@@ -31,6 +32,9 @@ def new_post(request):
 def edit_post(request, post_id):
     """Edit an existing post"""
     post = BlogPost.objects.get(id=post_id)
+    # Ensures the blog post can only be edited by creator
+    if post.owner != request.user:
+        raise Http404
 
     if request.method != 'POST':
         # Initial request; pre-fill form with the current post.
